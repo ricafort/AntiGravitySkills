@@ -11,7 +11,7 @@ Unlike a standard README, this document focuses on **teaching** the technologies
 
 1.  **Analyze Project Context**
     -   Scan the root directory to identify the **Technology Stack** (Language, Framework, Database, Tools).
-    -   Read `README.md`, `package.json`, `requirements.txt`, `go.mod`, or equivalent dependency files.
+    -   Read `AGENTS.md`, `README.md`, `package.json`, `requirements.txt`, `go.mod`, or equivalent dependency files.
     -   Identify the **Architectural Pattern** (e.g., MVC, Microservices, Event-Driven, Serverless).
 
 2.  **Inject Educational Comments**
