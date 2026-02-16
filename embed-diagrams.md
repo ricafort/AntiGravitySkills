@@ -1,26 +1,24 @@
----
-description: How to ensure Markdown documentation with Mermaid diagrams has static image fallbacks.
----
-
 When creating major documentation artifacts (like `implementation_plan.md` or `architecture.md`) that contain Mermaid diagrams:
 
-1.  **Create Assets Directory**: Always ensure a `project_docs/assets` (or relative `assets`) directory exists.
+1.  **Ensure Viewer Support (CRITICAL)**:
+    -   The user must have a Mermaid viewer installed in VS Code to see the diagrams.
+    -   **Run this command** to install the recommended extension:
+    // turbo
     ```powershell
-    mkdir -p project_docs/assets
+    code --install-extension biati.markdown-preview-mermaid-support
     ```
 
-2.  **Ensure Readability (CRITICAL)**:
-    -   Mermaid diagrams often render poorly in dark mode or static previews.
-    -   **ALWAYS** include this theme directive at the top of your mermaid code:
+2.  **Use Robust Syntax**:
+    -   **DO NOT** use complex `%%{init: ...}%%` directives inside the markdown file, as they often break the preview parser.
+    -   Use simple, standard syntax:
         ```mermaid
-        %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffcc00', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff0f0'}}}%%
-        graph TD;
-            ...
+        graph TD
+            A --> B
         ```
+    -   Avoid leading newlines or whitespace before `graph` or `sequenceDiagram`.
 
-3.  **Capture Visual**:
-    -   **Preferred Method**: Use `npx @mermaid-js/mermaid-cli` if available.
-        -   **MUST** use the `-b white` flag to force a white background.
+3.  **Capture Visual (Optional but Recommended)**:
+    -   **Preferred Method**: Use `npx @mermaid-js/mermaid-cli` if available to generate a PNG.
         -   Example: `npx -y @mermaid-js/mermaid-cli -i input.mmd -o output.png -b white`
     -   **Fallback**: If `mermaid-cli` fails, ask the user to upload a screenshot.
 
@@ -29,9 +27,8 @@ When creating major documentation artifacts (like `implementation_plan.md` or `a
     -   Embed it in the markdown file immediately after the mermaid code block:
         ```markdown
         ```mermaid
-        %%{init: ... }%%
-        graph TD;
-            A-->B;
+        graph TD
+            A-->B
         ```
         ![Diagram Description](assets/diagram_name.png)
         ```
