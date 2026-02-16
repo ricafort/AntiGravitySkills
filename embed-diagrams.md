@@ -5,8 +5,9 @@ When creating major documentation artifacts (like `implementation_plan.md` or `a
     -   **Run this command** to install the recommended extension:
     // turbo
     ```powershell
-    code --install-extension biati.markdown-preview-mermaid-support
+    code --install-extension bierner.markdown-mermaid
     ```
+    -   **CRITICAL CONFLICT WARNING**: If diagrams still fail to render (e.g., "No diagram type detected"), check for and **UNINSTALL** the official Mermaid extension, as it effectively breaks the preview renderer in VS Code when used alongside other Markdown extensions.
 
 2.  **Use Robust Syntax**:
     -   **DO NOT** use complex `%%{init: ...}%%` directives inside the markdown file, as they often break the preview parser.
